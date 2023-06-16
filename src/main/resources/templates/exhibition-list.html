@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Exhibition List</title>
+</head>
+<body>
+<h1>Exhibition List</h1>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Description</th>
+        <th>Ticket Price</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through the list of exhibitions -->
+    <tr th:each="exhibition : ${exhibitions}">
+        <td th:text="${exhibition.id}"></td>
+        <td th:text="${exhibition.name}"></td>
+        <td th:text="${exhibition.startDate}"></td>
+        <td th:text="${exhibition.endDate}"></td>
+        <td th:text="${exhibition.description}"></td>
+        <td th:text="${exhibition.ticketPrice}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -59,6 +59,15 @@ th, td {
     border-radius: 5px;
 }
 
+p {
+    color: dimgrey;
+    margin-top: -15px;
+}
+
+.description {
+    color: black;
+}
+
 button {
     background-color: #fff7a1;
     border: 1px solid black;
@@ -70,6 +79,10 @@ button {
     color: forestgreen;
     margin-top: 64px;
     margin-left: 64px;
+}
+
+.exh-title {
+    font-style: italic;
 }
 
 .row {

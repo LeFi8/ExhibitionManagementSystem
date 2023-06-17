@@ -26,6 +26,13 @@ public class ExhibitionController {
 
     @GetMapping("exhibitions/{id}")
     public String getExhibition(Model model) {
+        //TODO: logic
         return "exhibition-details";
+    }
+
+    @GetMapping("exhibitions/{id}/artworks")
+    public String getArtWorks(Model model) {
+        //TODO: logic
+        return "exhibition-artworks";
     }
 }

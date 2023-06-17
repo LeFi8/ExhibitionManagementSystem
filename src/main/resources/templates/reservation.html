@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reservation</title>
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+</head>
+<body>
+<header th:replace="fragments/header"></header>
+
+<div class="reservation-h1-and-title">
+    <h1>Reservation</h1>
+    <h2 class="exh-title">Underworld Journey</h2>
+</div>
+
+<div class="reservation-column">
+    <label for="reservation-number">Number of reservations</label>
+    <input type="number" id="reservation-number" class="reservation-number" min="1" max="100" value="1">
+
+    <label for="reservation-date">Date</label>
+    <input type="date" id="reservation-date" class="reservation-date" >
+
+    <button id="check-availability" class="check-availability">CHECK AVAILABILITY</button>
+
+    <label for="reservation-audio-guide">Audio guide</label>
+    <select name="audio-guide" id="reservation-audio-guide" class="reservation-audio-guide">
+        <option value="volvo">No</option>
+        <option value="saab">English</option>
+        <option value="mercedes">Polish</option>
+        <option value="audi">German</option>
+        <option value="audi">French</option>
+    </select>
+</div>
+
+<button id="button-next" class="button-next">NEXT</button>
+
+</body>
+</html>

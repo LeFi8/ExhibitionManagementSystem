@@ -105,3 +105,38 @@ button {
     gap: 10px;
     max-width: 256px;
 }
+
+.reservation-h1-and-title {
+    margin: 64px;
+}
+
+.reservation-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.reservation-number,
+.reservation-date,
+.reservation-audio-guide {
+    width: 128px;
+    margin-bottom: 32px;
+}
+
+.check-availability {
+    margin-bottom: 32px;
+    padding: 0.5rem 1rem;
+}
+
+.button-next {
+    float: right;
+    margin: 64px;
+    background-color: lightgrey;
+    cursor: not-allowed;
+}
+
+.button-next.enabled {
+    background-color: #fff7a1;
+    cursor: pointer;
+}

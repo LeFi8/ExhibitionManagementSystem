@@ -107,7 +107,14 @@ button {
 }
 
 .reservation-h1-and-title {
-    margin: 64px;
+    margin-left: 64px;
+    margin-top: 64px;
+}
+
+.reservation-error {
+    margin-top: 32px;
+    margin-bottom: 32px;
+    color: red;
 }
 
 .reservation-column {
@@ -139,4 +146,21 @@ button {
 .button-next.enabled {
     background-color: #fff7a1;
     cursor: pointer;
+}
+
+.reservation-login-column {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 64px;
+}
+
+.reservation-login-column button {
+    margin-top: 6px;
+    margin-bottom: 24px;
+}
+
+.reservation-login-button,
+.reservation-sign-up-button {
+    padding: 0.5rem 3rem;
 }

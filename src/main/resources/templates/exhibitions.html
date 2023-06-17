@@ -9,7 +9,7 @@
 
 <div th:replace="fragments/header :: header"></div>
 
-<h1>Available now</h1>
+<h1 class="available-h1">Available now</h1>
 
 <table>
     <thead>
@@ -26,7 +26,7 @@
         <td th:text="${exhibition.startDate}"></td>
         <td th:text="${exhibition.endDate}"></td>
         <td th:text="${exhibition.description}"></td>
-        <td th:text="${exhibition.ticketPrice}"></td>
+        <td th:text="Check out!"></td>
     </tr>
     </tbody>
 </table>

@@ -2,14 +2,13 @@ package com.mas.exhibitionmanagementsystem.controllers;
 
 import com.mas.exhibitionmanagementsystem.models.Exhibition;
 import com.mas.exhibitionmanagementsystem.services.ExhibitionService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class ExhibitionController {
     private final ExhibitionService exhibitionService;
 
@@ -18,8 +17,9 @@ public class ExhibitionController {
     }
 
     @GetMapping("/exhibitions")
-    public ResponseEntity<List<Exhibition>> getAllExhibitions() {
+    public String getAllExhibitions(Model model) {
         List<Exhibition> exhibitions = exhibitionService.getAllExhibitions();
-        return new ResponseEntity<>(exhibitions, HttpStatus.OK);
+        model.addAttribute("exhibitions", exhibitions);
+        return "exhibitions";
     }
 }

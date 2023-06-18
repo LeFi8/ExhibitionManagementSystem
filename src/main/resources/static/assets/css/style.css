@@ -76,7 +76,7 @@ button {
 }
 
 .available-h2 {
-    color: forestgreen;
+    color: limegreen;
     margin-top: 64px;
     margin-left: 64px;
 }
@@ -212,6 +212,19 @@ button {
     margin-top: 32px;
     margin-right: 64px;
     float: right;
+}
+
+.reservation-confirmation {
+    margin-top: 64px;
+    margin-left: 64px;
+}
+
+.reservation-confirmation h1 {
+    color: limegreen;
+}
+
+.reservation-confirmation h3 {
+    margin-top: 48px;
 }
 
 

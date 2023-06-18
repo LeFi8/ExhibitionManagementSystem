@@ -82,7 +82,8 @@ p {
     margin-top: -15px;
 }
 
-.button {
+.button,
+.button-next{
     background-color: #fff7a1;
     border: 1px solid black;
     border-radius: 5px;

@@ -20,19 +20,21 @@
     <label for="reservation-date">Date</label>
     <input type="date" id="reservation-date" class="reservation-date" >
 
-    <button id="check-availability" class="check-availability">CHECK AVAILABILITY</button>
+    <form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="post">
+        <button type="submit" class="check-availability">CHECK AVAILABILITY</button>
+    </form>
 
     <label for="reservation-audio-guide">Audio guide</label>
     <select name="audio-guide" id="reservation-audio-guide" class="reservation-audio-guide">
-        <option value="volvo">No</option>
-        <option value="saab">English</option>
-        <option value="mercedes">Polish</option>
-        <option value="audi">German</option>
-        <option value="audi">French</option>
+        <option>No</option>
+        <option>English</option>
+        <option>Polish</option>
+        <option>German</option>
+        <option>French</option>
     </select>
 </div>
 
-<button id="button-next" class="button-next">NEXT</button>
+<a id="button-next" class="button-next">NEXT</a>
 
 </body>
 </html>

@@ -1,5 +1,6 @@
 package com.mas.exhibitionmanagementsystem.services;
 
+import com.mas.exhibitionmanagementsystem.models.Exhibition;
 import com.mas.exhibitionmanagementsystem.models.Reservation;
 import com.mas.exhibitionmanagementsystem.repositories.ReservationRepository;
 import org.springframework.stereotype.Service;
@@ -26,5 +27,10 @@ public class ReservationService {
 
     public Optional<List<Reservation>> getReservationsByDate(LocalDate date) {
         return reservationRepository.findAllByReservationDate(date);
+    }
+
+    public boolean isAvailable(Exhibition exhibition, LocalDate date, int numberOfReservation) {
+        //TODO: logic
+        return false;
     }
 }

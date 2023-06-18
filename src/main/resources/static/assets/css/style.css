@@ -40,7 +40,8 @@ header nav ul li a {
 }
 
 body {
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
+    font-family: "Courier New", Cour, sans-serif;
     background-color: #f1f1f1;
 }
 

@@ -23,4 +23,13 @@ public class Reservation {
 
     @Column(name = "audio_guide", nullable = false)
     private AudioGuide audioGuide;
+
+    @ManyToOne
+    @JoinColumn(name = "id_exhibition", nullable = false)
+    private Exhibition exhibition;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client", nullable = false)
+    private Client client;
+
 }

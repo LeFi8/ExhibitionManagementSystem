@@ -1,9 +1,14 @@
 package com.mas.exhibitionmanagementsystem.models;
 
+import com.mas.exhibitionmanagementsystem.models.employees.Employee;
 import com.mas.exhibitionmanagementsystem.utilities.converter.DateConverter;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "Exhibition")
@@ -16,11 +21,11 @@ public class Exhibition {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "startDate", nullable = false)
+    @Column(name = "start_date", nullable = false)
     @Convert(converter = DateConverter.class)
     private LocalDate startDate;
 
-    @Column(name = "endDate")
+    @Column(name = "end_date")
     @Convert(converter = DateConverter.class)
     private LocalDate endDate;
 
@@ -28,8 +33,33 @@ public class Exhibition {
     @Lob
     private String description;
 
-    @Column(name = "ticketPrice", nullable = false)
+    @Column(name = "ticket_price", nullable = false)
     private double ticketPrice;
+
+    @ManyToOne()
+    @JoinColumn(name = "id_location")
+    private Location location;
+
+    @OneToMany(mappedBy = "exhibition")
+    private List<Reservation> reservations = new ArrayList<>();
+
+    @OneToMany(mappedBy = "exhibition")
+    private List<ArtWork> artWorks = new ArrayList<>();
+
+    @OneToMany(mappedBy = "exhibition")
+    private List<Ticket> tickets = new ArrayList<>();
+
+    @OneToOne
+    @JoinColumn(name = "id_exhibition_manager")
+    private Employee exhibitionManager;
+
+    @ManyToMany
+    @JoinTable(
+            name = "exhibition_pass",
+            joinColumns = @JoinColumn(name = "id_exhibition"),
+            inverseJoinColumns = @JoinColumn(name = "id_pass")
+    )
+    private Set<Pass> passSet = new HashSet<>();
 
     public Long getId() {
         return id;

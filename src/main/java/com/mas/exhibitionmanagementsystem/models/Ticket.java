@@ -1,6 +1,6 @@
 package com.mas.exhibitionmanagementsystem.models;
 
-import com.mas.exhibitionmanagementsystem.models.employees.Cashier;
+import com.mas.exhibitionmanagementsystem.models.employees.Employee;
 import com.mas.exhibitionmanagementsystem.models.enums.TicketDiscount;
 import jakarta.persistence.*;
 
@@ -18,5 +18,9 @@ public class Ticket {
 
     @ManyToOne()
     @JoinColumn(name = "id_cashier")
-    private Cashier cashier;
+    private Employee cashier;
+
+    @ManyToOne()
+    @JoinColumn(name = "id_exhibition")
+    private Exhibition exhibition;
 }

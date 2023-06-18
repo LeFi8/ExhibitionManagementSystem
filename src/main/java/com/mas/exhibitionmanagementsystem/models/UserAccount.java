@@ -15,4 +15,7 @@ public class UserAccount {
 
     @Column(name = "password", nullable = false)
     private String password;
+
+    @OneToOne(mappedBy = "account")
+    private Client client;
 }

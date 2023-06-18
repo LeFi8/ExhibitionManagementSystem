@@ -2,6 +2,9 @@ package com.mas.exhibitionmanagementsystem.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "location")
 public class Location {
@@ -15,4 +18,7 @@ public class Location {
 
     @Column(name = "max_capacity", nullable = false)
     private int maxCapacity;
+
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
+    private List<Exhibition> exhibition = new ArrayList<>();
 }

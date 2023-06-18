@@ -4,10 +4,12 @@ import com.mas.exhibitionmanagementsystem.utilities.converter.DateConverter;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "exhibiiton_pass")
-public class ExhibitionPass {
+@Table(name = "pass")
+public class Pass {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,4 +22,10 @@ public class ExhibitionPass {
     @Column(name = "end_date")
     @Convert(converter = DateConverter.class)
     private LocalDate endDate;
+
+    @ManyToMany(mappedBy = "passSet")
+    private Set<Exhibition> exhibitions = new HashSet<>();
+
+    @OneToOne(mappedBy = "pass")
+    private Client client;
 }

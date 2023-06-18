@@ -1,6 +1,7 @@
-package com.mas.exhibitionmanagementsystem.models;
+package com.mas.exhibitionmanagementsystem.models.employees;
 
 
+import com.mas.exhibitionmanagementsystem.models.Person;
 import com.mas.exhibitionmanagementsystem.models.enums.Education;
 import com.mas.exhibitionmanagementsystem.utilities.converter.DateConverter;
 import jakarta.persistence.*;
@@ -10,8 +11,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Employee")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public class Employee extends Person{
-
+public class Employee extends Person {
     @Enumerated(EnumType.STRING)
     @Column(name = "education", nullable = false)
     private Education education;

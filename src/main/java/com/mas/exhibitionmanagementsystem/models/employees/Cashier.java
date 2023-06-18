@@ -1,11 +1,9 @@
-package com.mas.exhibitionmanagementsystem.models;
+package com.mas.exhibitionmanagementsystem.models.employees;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Id;
 
 public class Cashier extends Employee {
-
-    @Column(name = "is_student")
+    @Column(name = "is_student", nullable = false)
     private boolean isStudent;
 
     public boolean isStudent() {

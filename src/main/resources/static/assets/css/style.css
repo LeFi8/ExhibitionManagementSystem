@@ -45,27 +45,29 @@ body {
 }
 
 table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-left: 32px;
-    margin-right: 32px;
+    width: 85%;
+    border-collapse: separate;
+    margin-inline: 100px;
+    border-radius: 5px;
 }
 
 th, td {
-    padding: 8px;
-    text-align: left;
-    margin: 12px;
-    border: 1px solid black;
+    padding: 16px;
+    text-align: center;
     border-radius: 5px;
+}
+
+th {
+    background-color: lightslategrey;
+}
+
+td {
+    background-color: rgba(119, 136, 153, 0.22);
 }
 
 p {
     color: dimgrey;
     margin-top: -15px;
-}
-
-.description {
-    color: black;
 }
 
 button {
@@ -75,10 +77,18 @@ button {
     padding: 0.5rem 1rem;
 }
 
+.check-out {
+    background-color: #fff7a1;
+}
+
+.description {
+    color: black;
+}
+
 .available-h2 {
     color: limegreen;
     margin-top: 64px;
-    margin-left: 64px;
+    margin-left: 120px;
 }
 
 .exh-title {

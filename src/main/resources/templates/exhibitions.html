@@ -22,11 +22,11 @@
     </thead>
     <tbody>
     <tr th:each="exhibition : ${exhibitions}">
-        <td th:text="${exhibition.name}"></td>
+        <td th:text="${exhibition.name}">Underworld Journey</td>
         <td th:text="${exhibition.startDate}"></td>
         <td th:text="${exhibition.endDate}"></td>
         <td th:text="${exhibition.description}"></td>
-        <td th:text="Check out!"></td>
+        <td class="check-out">Check out!</td>
     </tr>
     </tbody>
 </table>

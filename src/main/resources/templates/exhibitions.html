@@ -22,11 +22,13 @@
     </thead>
     <tbody>
     <tr th:each="exhibition : ${exhibitions}">
-        <td th:text="${exhibition.name}">Underworld Journey</td>
-        <td th:text="${exhibition.startDate}"></td>
-        <td th:text="${exhibition.endDate}"></td>
-        <td th:text="${exhibition.location.getAddress()}"></td>
-        <td class="check-out">Check out!</td>
+        <td th:text="${exhibition.getName()}"></td>
+        <td th:text="${exhibition.getStartDate()}"></td>
+        <td th:text="${exhibition.getEndDate()}"></td>
+        <td th:text="${exhibition.getLocation().getAddress()}"></td>
+        <td class="check-out">
+            <a th:href="@{/exhibition/{exhibitionId}(exhibitionId=${exhibition.getId()})}">Check out!</a>
+        </td>
     </tr>
     </tbody>
 </table>

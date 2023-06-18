@@ -33,3 +33,40 @@ VALUES ('Innovations Expo', 2, '2023-09-05', '2023-09-15', 'Explore the cutting-
 
 INSERT INTO exhibition (name, id_location, start_date, end_date, description, ticket_price)
 VALUES ('Cultural Diversity', 4, '2023-09-20', '2023-10-31', 'Celebrate the rich tapestry of cultures from around the world. Immerse yourself in the traditions, customs, music, and art that define different societies and foster a sense of global unity. Experience vibrant performances, explore interactive displays, and engage in cultural exchanges that promote understanding and appreciation. This exhibition invites you to embark on a multicultural journey and embrace the diversity that enriches our world.', 10);
+
+INSERT INTO artist (name, surname, birth_date)
+VALUES ('John', 'Doe', '1990-05-15'),
+       ('Jane', 'Smith', '1985-08-22'),
+       ('Michael', 'Johnson', '1992-11-10'),
+       ('Emily', 'Williams', '1998-03-27'),
+       ('Robert', 'Brown', '2000-01-15'),
+       ('Sarah', 'Davis', '1995-07-18'),
+       ('Joe', 'Anderson', '2001-10-10');
+
+INSERT INTO artwork (name, creation_year, id_exhibition)
+VALUES ('The Starry Night', 1889, 1),
+       ('Mona Lisa', 1503, 1),
+       ('The Persistence of Memory', 1931, 1),
+       ('The Scream', 1893, 1),
+       ('Guernica', 1937, 2),
+       ('The Last Supper', 1495, 3),
+       ('Girl with a Pearl Earring', 1665, 3),
+       ('The Birth of Venus', 1486, 3),
+       ('The Great Wave off Kanagawa', 1830, 3),
+       ('Les Demoiselles dAvignon', 1907, 1);
+
+INSERT INTO artist_artwork (id_artist, id_artwork)
+VALUES (1, 1),
+       (2, 1),
+       (3, 1),
+       (4, 2),
+       (5, 3),
+       (1, 6),
+       (5, 10),
+       (5, 9),
+       (4, 8),
+       (3, 8),
+       (7, 7),
+       (6, 4),
+       (6, 5);
+

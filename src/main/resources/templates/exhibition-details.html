@@ -19,8 +19,12 @@
         <p>Standard normal price: <span th:text="${exhibition.getTicketPrice()}"></span>zl</p>
 
         <div class="button-container">
-            <button >EXPLORE ARTWORKS</button>
-            <button >MAKE A RESERVATION</button>
+            <a th:href="@{/exhibition/{exhibitionId}/artworks(exhibitionId=${exhibition.id})}" class="button">
+                EXPLORE ARTWORKS
+            </a>
+            <a href="/reservation" class="button">
+                MAKE A RESERVATION
+            </a>
         </div>
     </div>
 

@@ -82,11 +82,12 @@ p {
     margin-top: -15px;
 }
 
-button {
+.button {
     background-color: #fff7a1;
     border: 1px solid black;
     border-radius: 5px;
     padding: 0.5rem 1rem;
+    text-align: center;
 }
 
 .check-out {
@@ -98,10 +99,18 @@ button {
     margin-top: 32px;
 }
 
-.available-h2 {
-    color: limegreen;
+.available-now,
+.not-available {
     margin-top: 64px;
     margin-left: 120px;
+}
+
+.available-now {
+    color: limegreen;
+}
+
+.not-available {
+    color: red;
 }
 
 .exh-title {
@@ -127,6 +136,10 @@ button {
     flex-direction: column;
     gap: 10px;
     max-width: 256px;
+}
+
+.artworks-table {
+    margin-top: 24px;
 }
 
 .reservation-h1-and-title {

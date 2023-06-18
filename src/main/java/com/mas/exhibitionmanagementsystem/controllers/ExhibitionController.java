@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class ExhibitionController {
@@ -21,6 +20,7 @@ public class ExhibitionController {
     @GetMapping("/exhibitions")
     public String getAllOngoingExhibitions(Model model) {
         List<Exhibition> exhibitions = exhibitionService.getAllExhibitions();
+        if (exhibitions.isEmpty()) return "no-exhibitions";
         model.addAttribute("exhibitions", exhibitions);
         return "exhibitions";
     }
@@ -32,9 +32,10 @@ public class ExhibitionController {
         return "exhibition-details";
     }
 
-    @GetMapping("exhibitions/{id}/artworks")
-    public String getArtWorks(Model model) {
-        //TODO: logic
+    @GetMapping("exhibition/{id}/artworks")
+    public String getArtWorks(@PathVariable Long id, Model model) {
+        Exhibition exhibition = exhibitionService.getExhibitionById(id).orElse(new Exhibition());
+        model.addAttribute("exhibition", exhibition);
         return "exhibition-artworks";
     }
 }

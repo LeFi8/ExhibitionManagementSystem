@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>No account reservation</title>
+  <link rel="stylesheet" href="/static/assets/css/style.css">
+</head>
+<body>
+<header th:replace="fragments/header"></header>
+
+<div class="reservation-h1-and-title">
+  <h1>Reservation</h1>
+  <h2 class="exh-title">Underworld Journey</h2>
+  <p>Reservations: 2</p>
+  <p>Date: 14/07/2023</p>
+</div>
+
+
+<div class="column-no-account">
+  <h2>Almost there!</h2>
+
+  <label for="no-account-name"></label>
+  <input type="text" id="no-account-name" class="no-account-name" placeholder="Name">
+
+  <label for="no-account-surname"></label>
+  <input type="text" id="no-account-surname" placeholder="Surname">
+
+  <label for="no-account-email"></label>
+  <input type="text" id="no-account-email" class="signup-email" placeholder="E-mail">
+</div>
+
+<button id="make-reservation-button" class="make-reservation-button">MAKE A RESERVATION</button>
+
+</body>
+</html>

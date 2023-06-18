@@ -174,7 +174,8 @@ button {
 
 .email,
 .password,
-.row-signup input {
+.row-signup input,
+.column-no-account input {
     padding: 0.5rem 2.5rem;
     border-radius: 5px;
     margin-bottom: 8px;
@@ -193,7 +194,8 @@ button {
     display: flex;
 }
 
-.column-signup {
+.column-signup,
+.column-no-account {
     display: grid;
     max-width: 512px;
     flex: 50;
@@ -201,7 +203,12 @@ button {
     margin-right: auto;
 }
 
-.sign-up-button {
+.column-no-account {
+    margin-left: 48px;
+}
+
+.sign-up-button,
+.make-reservation-button {
     margin-top: 32px;
     margin-right: 64px;
     float: right;

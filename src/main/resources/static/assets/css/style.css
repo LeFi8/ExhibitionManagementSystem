@@ -50,6 +50,7 @@ table {
     border-collapse: separate;
     margin-inline: 100px;
     border-radius: 5px;
+    margin-bottom: 128px;
 }
 
 th, td {

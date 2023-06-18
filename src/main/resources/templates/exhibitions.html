@@ -25,7 +25,7 @@
         <td th:text="${exhibition.name}">Underworld Journey</td>
         <td th:text="${exhibition.startDate}"></td>
         <td th:text="${exhibition.endDate}"></td>
-        <td th:text="${exhibition.description}"></td>
+        <td th:text="${exhibition.location.getAddress()}"></td>
         <td class="check-out">Check out!</td>
     </tr>
     </tbody>

@@ -21,4 +21,32 @@ public class Location {
 
     @OneToMany(mappedBy = "location", cascade = CascadeType.ALL)
     private List<Exhibition> exhibition = new ArrayList<>();
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public int getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(int maxCapacity) {
+        this.maxCapacity = maxCapacity;
+    }
+
+    public List<Exhibition> getExhibition() {
+        return exhibition;
+    }
+
+    public void setExhibition(List<Exhibition> exhibition) {
+        this.exhibition = exhibition;
+    }
 }

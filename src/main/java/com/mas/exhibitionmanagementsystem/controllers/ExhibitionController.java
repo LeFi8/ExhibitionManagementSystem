@@ -2,7 +2,6 @@ package com.mas.exhibitionmanagementsystem.controllers;
 
 import com.mas.exhibitionmanagementsystem.models.Exhibition;
 import com.mas.exhibitionmanagementsystem.services.ExhibitionService;
-import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +17,9 @@ public class ExhibitionController {
     }
 
     @GetMapping("/exhibitions")
-    public String getAllExhibitions(Model model) {
-        /*List<Exhibition> exhibitions = exhibitionService.getAllExhibitions();
-        model.addAttribute("exhibitions", exhibitions);*/
+    public String getAllOngoingExhibitions(Model model) {
+        List<Exhibition> exhibitions = exhibitionService.getAllExhibitions();
+        model.addAttribute("exhibitions", exhibitions);
         return "exhibitions";
     }
 

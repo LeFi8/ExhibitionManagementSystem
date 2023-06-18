@@ -93,6 +93,54 @@ public class Exhibition {
         this.endDate = endDate;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public List<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public List<ArtWork> getArtWorks() {
+        return artWorks;
+    }
+
+    public void setArtWorks(List<ArtWork> artWorks) {
+        this.artWorks = artWorks;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public Employee getExhibitionManager() {
+        return exhibitionManager;
+    }
+
+    public void setExhibitionManager(Employee exhibitionManager) {
+        this.exhibitionManager = exhibitionManager;
+    }
+
+    public Set<Pass> getPassSet() {
+        return passSet;
+    }
+
+    public void setPassSet(Set<Pass> passSet) {
+        this.passSet = passSet;
+    }
+
     public String getDescription() {
         return description;
     }

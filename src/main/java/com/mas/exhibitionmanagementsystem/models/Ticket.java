@@ -1,5 +1,6 @@
 package com.mas.exhibitionmanagementsystem.models;
 
+import com.mas.exhibitionmanagementsystem.models.employees.Cashier;
 import com.mas.exhibitionmanagementsystem.models.enums.TicketDiscount;
 import jakarta.persistence.*;
 
@@ -14,4 +15,8 @@ public class Ticket {
     @Enumerated(EnumType.STRING)
     @Column(name = "ticket_discount", nullable = false)
     private TicketDiscount ticketDiscount;
+
+    @ManyToOne()
+    @JoinColumn(name = "id_cashier")
+    private Cashier cashier;
 }

@@ -1,6 +1,11 @@
 package com.mas.exhibitionmanagementsystem.models.employees;
 
+import com.mas.exhibitionmanagementsystem.models.Ticket;
 import jakarta.persistence.Column;
+import jakarta.persistence.OneToMany;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Cashier extends Employee {
     @Column(name = "is_student", nullable = false)
@@ -13,4 +18,7 @@ public class Cashier extends Employee {
     public void setStudent(boolean student) {
         isStudent = student;
     }
+
+    @OneToMany(mappedBy = "cashier")
+    private List<Ticket> soldTickets = new ArrayList<>();
 }

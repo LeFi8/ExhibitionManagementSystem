@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+    <link rel="stylesheet" href="/static/assets/css/style.css">
+</head>
+<body>
+<header th:replace="fragments/header"></header>
+
+<div class="reservation-h1-and-title">
+    <h1>Create an account</h1>
+</div>
+
+<div class="row-signup">
+    <div class="column-signup">
+        <label for="signup-email"></label>
+        <input type="text" id="signup-email" class="signup-email" placeholder="E-mail">
+
+        <label for="signup-password"></label>
+        <input type="password" id="signup-password" class="signup-password" placeholder="Password">
+
+        <label for="repeat-password">Repeat password</label>
+        <input type="password" id="repeat-password" placeholder="Password">
+
+    </div>
+
+    <div class="column-signup">
+        <label for="name"></label>
+        <input type="text" id="name" placeholder="Name">
+
+        <label for="surname"></label>
+        <input type="text" id="surname" placeholder="Surname">
+
+        <label for="birthdate">Birthdate</label>
+        <input type="date" id="birthdate">
+    </div>
+</div>
+
+<button id="sign-up-button" class="sign-up-button">SIGN UP</button>
+
+</body>
+</html>

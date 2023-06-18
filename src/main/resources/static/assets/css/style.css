@@ -173,10 +173,38 @@ button {
 }
 
 .email,
-.password {
+.password,
+.row-signup input {
     padding: 0.5rem 2.5rem;
     border-radius: 5px;
     margin-bottom: 8px;
+}
+
+.row-signup input, label {
+    margin-inline: 48px;
+}
+
+.row-signup label {
+    margin-top: 12px;
+    margin-bottom: 6px;
+}
+
+.row-signup {
+    display: flex;
+}
+
+.column-signup {
+    display: grid;
+    max-width: 512px;
+    flex: 50;
+    padding: 16px;
+    margin-right: auto;
+}
+
+.sign-up-button {
+    margin-top: 32px;
+    margin-right: 64px;
+    float: right;
 }
 
 

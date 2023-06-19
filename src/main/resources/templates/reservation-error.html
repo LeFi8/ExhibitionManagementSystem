@@ -10,11 +10,11 @@
 
 <div class="reservation-h1-and-title">
     <h1>Reservation</h1>
-    <h2 class="exh-title">Underworld Journey</h2>
+    <h2 class="exh-title" th:text="${exhibition.getName()}"></h2>
 
     <p id="reservattion-error" class="reservation-error">Reservation <span th:text="${reservationCount}"></span> not available for this exhibition for <span th:text="${reservationDate}"></span></p>
 
-    <button id="button-back">BACK</button>
+    <a th:href="@{/exhibition/{id}/reservation(id=${exhibition.getId()})}" class="button">BACK</a>
 </div>
 
 </body>

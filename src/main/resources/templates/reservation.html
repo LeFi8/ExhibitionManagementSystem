@@ -10,7 +10,7 @@
 
 <div class="reservation-h1-and-title">
     <h1>Reservation</h1>
-    <h2 class="exh-title">Underworld Journey</h2>
+    <h2 class="exh-title" th:text="${exhibition.getName()}"></h2>
 </div>
 
 <form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="post">
@@ -22,6 +22,7 @@
         <input type="date" id="reservation-date" name="reservation-date" class="reservation-date" th:value="${reservationDate}">
 
         <button type="submit" class="check-availability">CHECK AVAILABILITY</button>
+        <label class="reservation-available" th:text="${available}"></label>
 
         <label for="reservation-audio-guide">Audio guide</label>
         <select name="audio-guide" id="reservation-audio-guide" class="reservation-audio-guide">
@@ -31,8 +32,8 @@
             <option>German</option>
             <option>French</option>
         </select>
-        <button type="submit" class="button-next" th:disabled="${nextButtonDisabled}">NEXT</button>
     </div>
+    <button type="submit" class="button-next" th:disabled="${nextButtonDisabled}">NEXT</button>
 </form>
 
 </body>

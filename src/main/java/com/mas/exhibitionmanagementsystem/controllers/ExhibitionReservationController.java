@@ -39,6 +39,7 @@ public class ExhibitionReservationController {
         boolean isAvailableForReservation = exhibitionReservationService.isAvailable(exhibition, reservationNumber, reservationDate);
 
         if (!isAvailableForReservation) {
+            model.addAttribute("exhibition", exhibition);
             model.addAttribute("reservationCount", reservationNumber);
             model.addAttribute("reservationDate", reservationDate);
             return "reservation-error";
@@ -47,6 +48,7 @@ public class ExhibitionReservationController {
         model.addAttribute("exhibition", exhibition);
         model.addAttribute("reservationCount", reservationNumber);
         model.addAttribute("reservationDate", reservationDate);
+        model.addAttribute("available", "Reservation available");
         model.addAttribute("nextButtonDisabled", false);
         return "reservation";
     }

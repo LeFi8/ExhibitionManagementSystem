@@ -90,10 +90,18 @@ button,
     border-radius: 5px;
     padding: 0.5rem 1rem;
     text-align: center;
+    cursor: pointer;
 }
 
 .check-out {
     background-color: #fff7a1;
+}
+
+.reservation-available {
+    color: limegreen;
+    text-align: center;
+    margin-top: 8px;
+    margin-bottom: 32px;
 }
 
 .description {
@@ -170,20 +178,13 @@ button,
 }
 
 .check-availability {
-    margin-bottom: 32px;
     padding: 0.5rem 1rem;
 }
 
 .button-next {
     float: right;
-    margin: 64px;
-    background-color: lightgrey;
-    cursor: not-allowed;
-}
-
-.button-next.enabled {
-    background-color: #fff7a1;
-    cursor: pointer;
+    margin-right: 64px;
+    margin-bottom: 64px;
 }
 
 .reservation-account-choice-column {

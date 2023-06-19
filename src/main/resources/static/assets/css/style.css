@@ -190,8 +190,13 @@ button,
 .reservation-account-choice-column {
     display: flex;
     flex-direction: column;
+    width: 10%;
     align-items: flex-start;
     margin-top: 64px;
+}
+
+.reservation-account-choice-column > * {
+    align-self: flex-start;
 }
 
 .reservation-account-choice-column button {
@@ -222,13 +227,24 @@ button,
     padding-inline: 16px;
 }
 
+.row-signup input,
+.column-no-account input {
+    padding: 0.5rem 2.5rem;
+}
+
 .email,
 .password,
 .row-signup input,
 .column-no-account input {
-    padding: 0.5rem 2.5rem;
     border-radius: 5px;
     margin-bottom: 8px;
+}
+
+.email,
+.password {
+    width: 20rem;
+    height: 2rem;
+    padding-left: 0.5rem;
 }
 
 .row-signup input {

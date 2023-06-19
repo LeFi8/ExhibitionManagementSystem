@@ -84,7 +84,7 @@ p {
 
 button,
 .button,
-.button-next{
+.button-next {
     background-color: #fff7a1;
     border: 1px solid black;
     border-radius: 5px;
@@ -201,14 +201,25 @@ button,
 
 .reservation-go-to-login-button,
 .reservation-sign-up-button,
-.reservation-login-button {
+.reservation-no-account-button {
     text-align: center;
-    width: 120px;
+    background-color: #fff7a1;
+    border: 1px solid black;
+    border-radius: 5px;
+    cursor: pointer;
     height: 35px;
+    line-height: 35px;
+    margin-top: 8px;
+    margin-bottom: 32px;
+}
+
+.reservation-go-to-login-button,
+.reservation-sign-up-button {
+    width: 120px;
 }
 
 .reservation-no-account-button {
-    height: 35px;
+    padding-inline: 16px;
 }
 
 .email,

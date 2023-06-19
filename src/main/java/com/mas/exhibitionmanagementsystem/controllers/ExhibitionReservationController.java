@@ -28,7 +28,6 @@ public class ExhibitionReservationController {
         model.addAttribute("exhibition", exhibition);
         model.addAttribute("reservationCount", 1);
         model.addAttribute("reservationDate", LocalDate.now());
-        model.addAttribute("nextButtonDisabled", true);
         return "reservation";
     }
 
@@ -47,23 +46,37 @@ public class ExhibitionReservationController {
             model.addAttribute("reservationDate", reservationDate);
             return "reservation-error";
         }
+
         HttpSession session = request.getSession();
         session.setAttribute("idExhibition", exhibition.getId());
         session.setAttribute("exhibitionName", exhibition.getName());
         session.setAttribute("reservationCount", reservationNumber);
         session.setAttribute("reservationDate", reservationDate);
 
+        model.addAttribute("reservationCountDisabled", true);
+        model.addAttribute("reservationDateDisabled", true);
+        model.addAttribute("isAvailable", true);
         model.addAttribute("exhibition", exhibition);
         model.addAttribute("reservationCount", reservationNumber);
         model.addAttribute("reservationDate", reservationDate);
         model.addAttribute("available", "Reservation available");
-        model.addAttribute("nextButtonDisabled", false);
         return "reservation";
+    }
+
+    @PostMapping("/exhibition/{id}/reservation/next")
+    public String continueReservation(HttpServletRequest request,
+                                    @PathVariable("id") Long id,
+                                    @RequestParam("audio-guide") String audioGuide) {
+        HttpSession session = request.getSession();
+        session.setAttribute("reservationAudioGuide", audioGuide);
+
+        return "redirect:/reservation/account-options";
     }
 
     @GetMapping("/reservation/account-options")
     public String showReservationAccountPage(HttpServletRequest request, Model model) {
-        model.addAttribute("exhibitionName", request.getAttribute("exhibitionName"));
+        HttpSession session = request.getSession();
+        model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
         return "reservation-account-options";
     }
 }

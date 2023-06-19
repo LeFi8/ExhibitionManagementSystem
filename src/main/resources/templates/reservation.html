@@ -16,14 +16,18 @@
 <form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="post">
     <div class="reservation-column">
         <label for="reservation-count">Number of reservations</label>
-        <input type="number" id="reservation-count" name="reservation-count" class="reservation-count" min="1" max="100" th:value="${reservationCount}">
+        <input type="number" th:disabled="${reservationCountDisabled}" id="reservation-count" name="reservation-count" class="reservation-count" min="1" max="100" th:value="${reservationCount}">
 
         <label for="reservation-date">Date</label>
-        <input type="date" id="reservation-date" name="reservation-date" class="reservation-date" th:value="${reservationDate}">
+        <input type="date" th:disabled="${reservationDateDisabled}" id="reservation-date" name="reservation-date" class="reservation-date" th:value="${reservationDate}">
 
         <button type="submit" class="check-availability">CHECK AVAILABILITY</button>
         <label class="reservation-available" th:text="${available}"></label>
+    </div>
+</form>
 
+<form th:action="@{/exhibition/{id}/reservation/next(id=${exhibition.getId()})}" method="post">
+    <div class="reservation-column">
         <label for="reservation-audio-guide">Audio guide</label>
         <select name="audio-guide" id="reservation-audio-guide" class="reservation-audio-guide">
             <option>No</option>
@@ -33,9 +37,9 @@
             <option>French</option>
         </select>
     </div>
-    <a href="/reservation/account-options">
-        <button type="button" class="button-next" th:disabled="${nextButtonDisabled}">NEXT</button>
-    </a>
+    <div th:if="${isAvailable}">
+        <button type="submit" class="button-next">NEXT</button>
+    </div>
 </form>
 
 </body>

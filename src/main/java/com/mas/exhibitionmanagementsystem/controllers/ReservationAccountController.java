@@ -2,6 +2,7 @@ package com.mas.exhibitionmanagementsystem.controllers;
 
 import com.mas.exhibitionmanagementsystem.services.ReservationService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,13 +18,15 @@ public class ReservationAccountController {
 
     @PostMapping("/login")
     public String login(HttpServletRequest request, Model model) {
-        model.addAttribute("exhibitionName", request.getAttribute("exhibitionName"));
+        HttpSession session = request.getSession();
+        model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
         return "reservation-login";
     }
 
     @PostMapping("/register")
     public String registration(HttpServletRequest request, Model model) {
-        model.addAttribute("exhibitionName", request.getAttribute("exhibitionName"));
+        HttpSession session = request.getSession();
+        model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
         return "reservation-sign-up";
     }
 }

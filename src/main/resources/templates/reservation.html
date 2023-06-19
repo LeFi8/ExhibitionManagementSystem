@@ -15,8 +15,8 @@
 
 <form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="post">
     <div class="reservation-column">
-        <label for="reservation-number">Number of reservations</label>
-        <input type="number" id="reservation-number" name="reservation-number" class="reservation-number" min="1" max="100" th:value="${reservationCount}">
+        <label for="reservation-count">Number of reservations</label>
+        <input type="number" id="reservation-count" name="reservation-count" class="reservation-count" min="1" max="100" th:value="${reservationCount}">
 
         <label for="reservation-date">Date</label>
         <input type="date" id="reservation-date" name="reservation-date" class="reservation-date" th:value="${reservationDate}">
@@ -33,7 +33,9 @@
             <option>French</option>
         </select>
     </div>
-    <button type="submit" class="button-next" th:disabled="${nextButtonDisabled}">NEXT</button>
+    <a href="/reservation/account-options">
+        <button type="button" class="button-next" th:disabled="${nextButtonDisabled}">NEXT</button>
+    </a>
 </form>
 
 </body>

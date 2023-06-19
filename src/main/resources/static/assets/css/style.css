@@ -170,7 +170,7 @@ button,
     align-items: center;
 }
 
-.reservation-number,
+.reservation-count,
 .reservation-date,
 .reservation-audio-guide {
     width: 128px;
@@ -220,7 +220,7 @@ button,
     margin-bottom: 8px;
 }
 
-.row-signup input, label {
+.row-signup input {
     margin-inline: 48px;
 }
 

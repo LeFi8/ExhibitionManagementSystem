@@ -10,18 +10,20 @@
 
 <div class="reservation-h1-and-title">
   <h1>Reservation</h1>
-  <h2 class="exh-title">Underworld Journey</h2>
+  <h2 class="exh-title" th:text="${exhibitionName}"></h2>
 
   <div class="reservation-account-choice-column">
+
     <h2>Login</h2>
-    <label for="email"></label>
-    <input type="text" id="email" class="email" placeholder="E-mail">
+    <form action="/login" method="post">
+      <label for="email">Email</label>
+      <input type="text" id="email" name="email" class="email" placeholder="E-mail">
 
-    <label for="password"></label>
-    <input type="password" id="password" class="password" placeholder="Password">
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" class="password" placeholder="Password">
 
-    <button id="reservation-login-button" class="reservation-login-button">LOG IN</button>
-
+      <button type="submit" id="reservation-login-button" class="reservation-login-button">LOG IN</button>
+    </form>
     </div>
 </div>
 

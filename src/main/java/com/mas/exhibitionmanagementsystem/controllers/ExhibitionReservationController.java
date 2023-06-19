@@ -1,9 +1,9 @@
 package com.mas.exhibitionmanagementsystem.controllers;
 
 import com.mas.exhibitionmanagementsystem.models.Exhibition;
+import com.mas.exhibitionmanagementsystem.services.ExhibitionReservationService;
 import com.mas.exhibitionmanagementsystem.services.ExhibitionService;
 import com.mas.exhibitionmanagementsystem.services.ReservationService;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +16,11 @@ import java.time.LocalDate;
 @Controller
 public class ExhibitionReservationController {
     private final ExhibitionService exhibitionService;
-    private final ReservationService reservationService;
+    private final ExhibitionReservationService exhibitionReservationService;
 
-    public ExhibitionReservationController(ExhibitionService exhibitionService, ReservationService reservationService) {
+    public ExhibitionReservationController(ExhibitionService exhibitionService, ExhibitionReservationService exhibitionReservationService) {
         this.exhibitionService = exhibitionService;
-        this.reservationService = reservationService;
+        this.exhibitionReservationService = exhibitionReservationService;
     }
 
     @GetMapping("/exhibition/{id}/reservation")
@@ -34,10 +34,11 @@ public class ExhibitionReservationController {
     public String checkAvailability(@PathVariable("id") Long id,
                                     @RequestParam("reservationNumber") int reservationNumber,
                                     @RequestParam("reservationDate") LocalDate reservationDate,
-                                    @RequestParam("reservationAudioGuide") String audioGuide,
                                     Model model) {
         Exhibition exhibition = exhibitionService.getExhibitionById(id).orElse(new Exhibition());
-        //TODO: logic
+        boolean isAvailableForReservation = exhibitionReservationService.isAvailable(exhibition, reservationNumber, reservationDate);
+
+
         return "redirect:/availability";
     }
 }

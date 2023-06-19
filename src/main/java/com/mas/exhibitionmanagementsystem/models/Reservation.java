@@ -32,4 +32,47 @@ public class Reservation {
     @JoinColumn(name = "id_client", nullable = false)
     private Client client;
 
+    public Long getId() {
+        return id;
+    }
+
+    public LocalDate getReservationDate() {
+        return reservationDate;
+    }
+
+    public void setReservationDate(LocalDate reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public int getNumberOfReservations() {
+        return numberOfReservations;
+    }
+
+    public void setNumberOfReservations(int numberOfReservations) {
+        this.numberOfReservations = numberOfReservations;
+    }
+
+    public AudioGuide getAudioGuide() {
+        return audioGuide;
+    }
+
+    public void setAudioGuide(AudioGuide audioGuide) {
+        this.audioGuide = audioGuide;
+    }
+
+    public Exhibition getExhibition() {
+        return exhibition;
+    }
+
+    public void setExhibition(Exhibition exhibition) {
+        this.exhibition = exhibition;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
 }

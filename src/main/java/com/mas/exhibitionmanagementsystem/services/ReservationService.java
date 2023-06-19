@@ -25,12 +25,13 @@ public class ReservationService {
         return reservationRepository.findById(id);
     }
 
-    public Optional<List<Reservation>> getReservationsByDate(LocalDate date) {
-        return reservationRepository.findAllByReservationDate(date);
-    }
-
-    public boolean isAvailable(Exhibition exhibition, LocalDate date, int numberOfReservation) {
-        //TODO: logic
-        return false;
+    public int countReservationsOnExhibitionByDate(Exhibition exhibition, LocalDate date) {
+        List<Reservation> reservations = reservationRepository.findAllByExhibitionAndReservationDate(exhibition, date)
+                .orElse(List.of());
+        int reservationsCount = 0;
+        for (Reservation reservation : reservations) {
+            reservationsCount += reservation.getNumberOfReservations();
+        }
+        return reservationsCount;
     }
 }

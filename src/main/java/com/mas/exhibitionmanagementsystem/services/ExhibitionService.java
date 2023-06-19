@@ -28,4 +28,10 @@ public class ExhibitionService {
     public Optional<List<Exhibition>> getExhibitionsAfterStartDate(LocalDate startDate) {
         return exhibitionRepository.findAllByStartDateAfter(startDate);
     }
+
+    public int spaceOnExhibition(Exhibition exhibition, LocalDate date) {
+        int numberOfExhibitionsInLocation =
+                exhibitionRepository.countByLocationAndStartDateLessThanEqualAndEndDateGreaterThanEqual(exhibition.getLocation(), date, date);
+        return exhibition.getLocation().getMaxCapacity() / numberOfExhibitionsInLocation;
+    }
 }

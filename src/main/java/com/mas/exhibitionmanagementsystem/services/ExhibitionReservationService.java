@@ -1,9 +1,11 @@
 package com.mas.exhibitionmanagementsystem.services;
 
 import com.mas.exhibitionmanagementsystem.models.Exhibition;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 
+@Service
 public class ExhibitionReservationService {
     private final ExhibitionService exhibiitonService;
     private final ReservationService reservationService;

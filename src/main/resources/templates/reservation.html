@@ -13,28 +13,27 @@
     <h2 class="exh-title">Underworld Journey</h2>
 </div>
 
-<div class="reservation-column">
-    <label for="reservation-number">Number of reservations</label>
-    <input type="number" id="reservation-number" class="reservation-number" min="1" max="100" value="1">
+<form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="post">
+    <div class="reservation-column">
+        <label for="reservation-number">Number of reservations</label>
+        <input type="number" id="reservation-number" name="reservation-number" class="reservation-number" min="1" max="100" th:value="${reservationCount}">
 
-    <label for="reservation-date">Date</label>
-    <input type="date" id="reservation-date" class="reservation-date" >
+        <label for="reservation-date">Date</label>
+        <input type="date" id="reservation-date" name="reservation-date" class="reservation-date" th:value="${reservationDate}">
 
-    <form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="post">
         <button type="submit" class="check-availability">CHECK AVAILABILITY</button>
-    </form>
 
-    <label for="reservation-audio-guide">Audio guide</label>
-    <select name="audio-guide" id="reservation-audio-guide" class="reservation-audio-guide">
-        <option>No</option>
-        <option>English</option>
-        <option>Polish</option>
-        <option>German</option>
-        <option>French</option>
-    </select>
-</div>
-
-<a id="button-next" class="button-next">NEXT</a>
+        <label for="reservation-audio-guide">Audio guide</label>
+        <select name="audio-guide" id="reservation-audio-guide" class="reservation-audio-guide">
+            <option>No</option>
+            <option>English</option>
+            <option>Polish</option>
+            <option>German</option>
+            <option>French</option>
+        </select>
+        <button type="submit" class="button-next" th:disabled="${nextButtonDisabled}">NEXT</button>
+    </div>
+</form>
 
 </body>
 </html>

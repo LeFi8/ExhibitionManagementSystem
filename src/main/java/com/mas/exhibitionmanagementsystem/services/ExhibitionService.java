@@ -5,7 +5,6 @@ import com.mas.exhibitionmanagementsystem.repositories.ExhibitionRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,6 +31,7 @@ public class ExhibitionService {
     public int spaceOnExhibition(Exhibition exhibition, LocalDate date) {
         int numberOfExhibitionsInLocation =
                 exhibitionRepository.countByLocationAndStartDateLessThanEqualAndEndDateGreaterThanEqual(exhibition.getLocation(), date, date);
+        if (numberOfExhibitionsInLocation == 0) return 0;
         return exhibition.getLocation().getMaxCapacity() / numberOfExhibitionsInLocation;
     }
 }

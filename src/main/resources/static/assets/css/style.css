@@ -232,6 +232,7 @@ button,
 
 .reservation-no-account-button {
     padding-inline: 16px;
+    margin-bottom: 128px;
 }
 
 .column-no-account input {
@@ -256,6 +257,7 @@ button,
 
 .reservation-login-button {
     margin-top: 12px;
+    margin-bottom: 128px;
 }
 
 .row-signup input{

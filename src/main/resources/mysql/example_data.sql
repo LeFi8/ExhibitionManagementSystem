@@ -81,3 +81,5 @@ VALUES
 INSERT INTO user_account(email, password)
 VALUES ('adamn@mail.com', '$2a$10$r9oXlhw8oUTFUXWfiAK.h.7Ce0puIow/rS6FzYZNsZzUkPLnv21MO');
 
+UPDATE client SET id_account = 1 WHERE id = 1;
+

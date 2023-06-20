@@ -295,6 +295,7 @@ button,
 .make-reservation-button {
     margin-top: 32px;
     margin-right: 64px;
+    margin-bottom: 64px;
     float: right;
 }
 

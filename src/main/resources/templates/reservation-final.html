@@ -10,26 +10,27 @@
 
 <div class="reservation-h1-and-title">
   <h1>Reservation</h1>
-  <h2 class="exh-title">Underworld Journey</h2>
-  <p>Reservations: 2</p>
-  <p>Date: 14/07/2023</p>
+  <h2 class="exh-title" th:text="${exhibitionName}"></h2>
+  <p>Reservations: <span th:text="${reservationCount}"></span></p>
+  <p>Date: <span th:text="${reservationDate}"></span></p>
 </div>
 
+<form>
+  <div class="column-no-account">
+    <h2>Almost there!</h2>
 
-<div class="column-no-account">
-  <h2>Almost there!</h2>
+    <label for="no-account-name"></label>
+    <input type="text" id="no-account-name" class="name" placeholder="Name">
 
-  <label for="no-account-name"></label>
-  <input type="text" id="no-account-name" class="no-account-name" placeholder="Name">
+    <label for="no-account-surname"></label>
+    <input type="text" id="no-account-surname" placeholder="Surname">
 
-  <label for="no-account-surname"></label>
-  <input type="text" id="no-account-surname" placeholder="Surname">
+    <label for="no-account-email"></label>
+    <input type="text" id="no-account-email" class="signup-email" placeholder="E-mail">
+  </div>
 
-  <label for="no-account-email"></label>
-  <input type="text" id="no-account-email" class="signup-email" placeholder="E-mail">
-</div>
-
-<button id="make-reservation-button" class="make-reservation-button">MAKE A RESERVATION</button>
+  <button type="submit" id="make-reservation-button" class="make-reservation-button">MAKE A RESERVATION</button>
+</form>
 
 </body>
 </html>

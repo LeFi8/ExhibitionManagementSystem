@@ -70,4 +70,18 @@ public class ReservationAccountController {
 
         return "reservation-final";
     }
+
+    @GetMapping("/reservation/final-step")
+    public String reservationFinal(HttpServletRequest request, Model model) {
+        HttpSession session = request.getSession();
+        model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
+        model.addAttribute("reservationCount", session.getAttribute("reservationCount"));
+        model.addAttribute("reservationDate", session.getAttribute("reservationDate"));
+        return "reservation-final";
+    }
+
+    @PostMapping("/reservation/confirm")
+    public String confirmReservation(){
+        return "reservation-confirmation";
+    }
 }

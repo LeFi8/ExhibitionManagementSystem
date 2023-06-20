@@ -124,7 +124,7 @@ public class ReservationAccountController {
         Client client = (Client) session.getAttribute("client");
         Exhibition exhibition = (Exhibition) session.getAttribute("exhibition");
 
-        if (client == null) clientAccountService.addClient(name, surname, null);
+        if (client == null) client = clientAccountService.addClient(name, surname, null);
 
         Reservation reservation = reservationService.makeReservation(
                 reservationDate, reservationCount, audioGuide, client, exhibition);

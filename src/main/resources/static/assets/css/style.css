@@ -120,8 +120,14 @@ button,
 }
 
 .error,
-.label-error {
+.label-error,
+.label-error-signup {
     color: red;
+}
+
+.label-error-signup {
+    margin-left: 48px;
+    margin-bottom: 8px;
 }
 
 .exh-title {
@@ -255,7 +261,7 @@ button,
 .row-signup input{
     margin-inline: 48px;
     height: 2rem;
-    padding-left: 1rem;
+    padding-inline: 1rem;
 }
 
 .signup-repeat-password,

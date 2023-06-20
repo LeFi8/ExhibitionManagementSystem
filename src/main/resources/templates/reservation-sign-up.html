@@ -12,38 +12,39 @@
     <h1>Create an account</h1>
 </div>
 
-<div class="row-signup">
-    <div class="column-signup">
-        <label for="signup-email"></label>
-        <input type="text" id="signup-email" class="signup-email" placeholder="E-mail" th:value="${email}">
-        <label class="label-error" th:text="${badMail}"></label>
 
-        <label for="signup-password"></label>
-        <input type="password" id="signup-password" class="signup-password" placeholder="Password">
-        <label class="label-error" th:text="${badPassword}"></label>
+<form th:action="@{/register}" method="post">
+    <div class="row-signup">
+        <div class="column-signup">
+            <label for="signup-email"></label>
+            <input type="text" id="signup-email" class="signup-email" name="email" placeholder="E-mail" th:value="${email}">
+            <label class="label-error-signup" th:text="${badMail}"></label>
 
-        <label for="repeat-password" class="signup-repeat-password">Repeat password</label>
-        <input type="password" id="repeat-password" placeholder="Password">
-        <label class="label-error" th:text="${badSecondPassowrd}"></label>
+            <label for="signup-password"></label>
+            <input type="password" id="signup-password" name="password" class="signup-password" placeholder="Password">
+            <label class="label-error-signup" th:text="${badPassword}"></label>
+
+            <label for="repeat-password" class="signup-repeat-password">Repeat password</label>
+            <input type="password" id="repeat-password" name="secondPassword" placeholder="Password">
+            <label class="label-error-signup" th:text="${badSecondPassword}"></label>
+        </div>
+
+        <div class="column-signup">
+            <label for="name"></label>
+            <input type="text" pattern="[A-Za-z]+( [A-Za-z]+)*" name="name" id="name" placeholder="Name" th:value="${name}">
+            <label class="label-error-signup" th:text="${nameEmpty}"></label>
+
+            <label for="surname"></label>
+            <input type="text" name="surname" pattern="[A-Za-z]+" id="surname" placeholder="Surname" th:value="${surname}">
+            <label class="label-error-signup" th:text="${surnameEmpty}"></label>
+
+            <label for="birthdate" class="signup-birthdate">Birthdate</label>
+            <input type="date" name="birthdate" id="birthdate">
+            <label class="label-error-signup" th:text="${dateError}"></label>
+
+        </div>
     </div>
-
-    <div class="column-signup">
-        <label for="name"></label>
-        <input type="text" id="name" placeholder="Name">
-        <label></label>
-
-        <label for="surname"></label>
-        <input type="text" id="surname" placeholder="Surname">
-        <label></label>
-
-        <label for="birthdate" class="signup-birthdate">Birthdate</label>
-        <input type="date" id="birthdate">
-        <label></label>
-
-    </div>
-</div>
-
-<button id="sign-up-button" class="sign-up-button">SIGN UP</button>
-
+    <button id="sign-up-button" class="sign-up-button">SIGN UP</button>
+</form>
 </body>
 </html>

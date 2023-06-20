@@ -19,4 +19,20 @@ public class Client extends Person {
     @OneToOne()
     @JoinColumn(name = "id_pass")
     private Pass pass;
+
+    public UserAccount getAccount() {
+        return account;
+    }
+
+    public void setAccount(UserAccount account) {
+        this.account = account;
+    }
+
+    public Pass getPass() {
+        return pass;
+    }
+
+    public void setPass(Pass pass) {
+        this.pass = pass;
+    }
 }

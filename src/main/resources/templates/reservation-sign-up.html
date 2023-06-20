@@ -15,25 +15,31 @@
 <div class="row-signup">
     <div class="column-signup">
         <label for="signup-email"></label>
-        <input type="text" id="signup-email" class="signup-email" placeholder="E-mail">
+        <input type="text" id="signup-email" class="signup-email" placeholder="E-mail" th:value="${email}">
+        <label class="label-error" th:text="${badMail}"></label>
 
         <label for="signup-password"></label>
         <input type="password" id="signup-password" class="signup-password" placeholder="Password">
+        <label class="label-error" th:text="${badPassword}"></label>
 
-        <label for="repeat-password">Repeat password</label>
+        <label for="repeat-password" class="signup-repeat-password">Repeat password</label>
         <input type="password" id="repeat-password" placeholder="Password">
-
+        <label class="label-error" th:text="${badSecondPassowrd}"></label>
     </div>
 
     <div class="column-signup">
         <label for="name"></label>
         <input type="text" id="name" placeholder="Name">
+        <label></label>
 
         <label for="surname"></label>
         <input type="text" id="surname" placeholder="Surname">
+        <label></label>
 
-        <label for="birthdate">Birthdate</label>
+        <label for="birthdate" class="signup-birthdate">Birthdate</label>
         <input type="date" id="birthdate">
+        <label></label>
+
     </div>
 </div>
 

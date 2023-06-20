@@ -252,13 +252,17 @@ button,
     margin-top: 12px;
 }
 
-.row-signup input {
+.row-signup input{
     margin-inline: 48px;
+    height: 2rem;
+    padding-left: 1rem;
 }
 
-.row-signup label {
+.signup-repeat-password,
+.signup-birthdate {
     margin-top: 12px;
     margin-bottom: 6px;
+    margin-left: 48px;
 }
 
 .row-signup {

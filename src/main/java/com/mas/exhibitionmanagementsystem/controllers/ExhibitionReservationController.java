@@ -1,6 +1,7 @@
 package com.mas.exhibitionmanagementsystem.controllers;
 
 import com.mas.exhibitionmanagementsystem.models.Exhibition;
+import com.mas.exhibitionmanagementsystem.models.Reservation;
 import com.mas.exhibitionmanagementsystem.services.ExhibitionReservationService;
 import com.mas.exhibitionmanagementsystem.services.ExhibitionService;
 import com.mas.exhibitionmanagementsystem.services.ReservationService;
@@ -79,5 +80,14 @@ public class ExhibitionReservationController {
         String exhibitionName = ((Exhibition)session.getAttribute("exhibition")).getName();
         model.addAttribute("exhibitionName", exhibitionName);
         return "reservation-account-options";
+    }
+
+    @GetMapping("/reservation/confirmation")
+    public String showReservationConfirmation(HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        Reservation reservation = (Reservation) session.getAttribute("reservation");
+        model.addAttribute("reservation", reservation);
+
+        return "reservation-confirmation";
     }
 }

@@ -37,25 +37,20 @@ public class ReservationService {
         return reservationsCount;
     }
 
-    public boolean makeReservation(LocalDate date,
-                                   int reservationCount,
-                                   AudioGuide audioGuide,
-                                   Client client,
-                                   Exhibition exhibition) {
-        try {
-            Reservation reservation = new Reservation();
-            reservation.setReservationDate(date);
-            reservation.setNumberOfReservations(reservationCount);
-            reservation.setAudioGuide(audioGuide);
-            reservation.setClient(client);
-            reservation.setExhibition(exhibition);
+    public Reservation makeReservation(LocalDate date,
+                                       int reservationCount,
+                                       AudioGuide audioGuide,
+                                       Client client,
+                                       Exhibition exhibition) {
+        Reservation reservation = new Reservation();
+        reservation.setReservationDate(date);
+        reservation.setNumberOfReservations(reservationCount);
+        reservation.setAudioGuide(audioGuide);
+        reservation.setClient(client);
+        reservation.setExhibition(exhibition);
 
-            reservationRepository.save(reservation);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
+        reservationRepository.save(reservation);
 
-        return true;
+        return reservation;
     }
 }

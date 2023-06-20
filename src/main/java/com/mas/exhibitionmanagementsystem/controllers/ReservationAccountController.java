@@ -2,6 +2,7 @@ package com.mas.exhibitionmanagementsystem.controllers;
 
 import com.mas.exhibitionmanagementsystem.models.Client;
 import com.mas.exhibitionmanagementsystem.models.Exhibition;
+import com.mas.exhibitionmanagementsystem.models.Reservation;
 import com.mas.exhibitionmanagementsystem.models.enums.AudioGuide;
 import com.mas.exhibitionmanagementsystem.services.ReservationService;
 import com.mas.exhibitionmanagementsystem.services.ClientAccountService;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
+import java.util.Enumeration;
 
 @Controller
 public class ReservationAccountController {
@@ -122,27 +124,18 @@ public class ReservationAccountController {
         Client client = (Client) session.getAttribute("client");
         Exhibition exhibition = (Exhibition) session.getAttribute("exhibition");
 
-        if (client == null) {
-            client = clientAccountService.addClient(name, surname, null);
-            session.setAttribute("client", client);
+        if (client == null) clientAccountService.addClient(name, surname, null);
+
+        Reservation reservation = reservationService.makeReservation(
+                reservationDate, reservationCount, audioGuide, client, exhibition);
+
+        Enumeration<String> attributeNames = session.getAttributeNames();
+        while (attributeNames.hasMoreElements()) {
+            String attributeName = attributeNames.nextElement();
+            session.removeAttribute(attributeName);
         }
-        if (!reservationService.makeReservation(reservationDate, reservationCount, audioGuide, client, exhibition)) {
-            System.out.println("error");
-        }
+        session.setAttribute("reservation", reservation);
 
         return "redirect:/reservation/confirmation";
-    }
-
-    @GetMapping("/reservation/confirmation")
-    public String showReservationConfirmation(HttpServletRequest request, Model model){
-        HttpSession session = request.getSession();
-        String exhibitionName = ((Exhibition) session.getAttribute("exhibition")).getName();
-        String clientName = ((Client) session.getAttribute("client")).getName();
-        model.addAttribute("exhibitionName", exhibitionName);
-        model.addAttribute("reservationCount", session.getAttribute("reservationCount"));
-        model.addAttribute("reservationDate", session.getAttribute("reservationDate"));
-        model.addAttribute("clientName", clientName);
-
-        return "reservation-confirmation";
     }
 }

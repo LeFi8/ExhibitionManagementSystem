@@ -9,14 +9,14 @@
 <header th:replace="~{fragments/header}"></header>
 
 <div class="reservation-confirmation">
-  <h1>Thank you <span th:text="${clientName}"></span></h1>
+  <h1>Thank you <span th:text="${reservation.getClient().getName()}"></span></h1>
   <h2>Your reservation has been completed.</h2>
 
   <h3>Reservation details</h3>
-  <p>Exhibition: <span th:text="${exhibitionName}"></span></p>
-  <p>Reservations: <span th:text="${reservationCount}"></span></p>
-  <p>Date: <span th:text="${reservationDate}"></span></p>
-  <p>Location: <span th:text="${exhibitionLocation}"></span></p>
+  <p>Exhibition: <span th:text="${reservation.getExhibition().getName()}"></span></p>
+  <p>Reservations: <span th:text="${reservation.getNumberOfReservations()}"></span></p>
+  <p>Date: <span th:text="${reservation.getReservationDate()}"></span></p>
+  <p>Location: <span th:text="${reservation.getExhibition().getLocation().getAddress()}"></span></p>
 </div>
 
 </body>

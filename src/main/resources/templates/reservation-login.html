@@ -15,12 +15,14 @@
   <div class="login-column">
 
     <h2>Login</h2>
-    <form action="/login" method="post">
+    <form th:action="@{/login/auth}" method="post">
       <label for="email"></label>
-      <input type="text" id="email" name="email" class="email" placeholder="E-mail">
+      <input type="text" id="email" name="email" class="email" placeholder="E-mail" th:value="${email}">
+      <label class="label-error" th:text="${badMail}"></label>
 
       <label for="password"></label>
       <input type="password" id="password" name="password" class="password" placeholder="Password">
+      <label class="label-error" th:text="${badPass}"></label><br>
 
       <button type="submit" id="reservation-login-button" class="reservation-login-button">LOG IN</button>
     </form>

@@ -31,7 +31,7 @@ public class ReservationAccountController {
         return "reservation-login";
     }
 
-    @PostMapping("/login/auth")
+    @PostMapping("/login")
     public String authenticate(@RequestParam("email") String email,
                                @RequestParam("password") String password,
                                HttpServletRequest request,
@@ -45,15 +45,15 @@ public class ReservationAccountController {
             return "reservation-login";
         }
 
-        return "reservation-final";
+        return "redirect:reservation/final-step";
     }
 
-    @GetMapping("/register-form")
+    @GetMapping("/registration")
     public String registerForm() {
         return "reservation-sign-up";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/registration")
     public String registration(@RequestParam("email") String email,
                                @RequestParam("password") String password,
                                @RequestParam("secondPassword") String password2,
@@ -68,7 +68,7 @@ public class ReservationAccountController {
         Client client = clientAccountService.addClient(name, surname, birthdate);
         clientAccountService.register(email, password, client);
 
-        return "reservation-final";
+        return "redirect:reservation/final-step";
     }
 
     @GetMapping("/reservation/final-step")

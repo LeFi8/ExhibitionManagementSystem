@@ -15,4 +15,5 @@ public interface ExhibitionRepository extends JpaRepository<Exhibition, Long> {
     Optional<Exhibition> findById(Long id);
     Optional<List<Exhibition>> findAllByStartDateAfter(LocalDate startDate);
     int countByLocationAndStartDateLessThanEqualAndEndDateGreaterThanEqual(Location location, LocalDate date, LocalDate date2);
+    int countByLocationAndStartDateLessThanEqual(Location location, LocalDate date);
 }

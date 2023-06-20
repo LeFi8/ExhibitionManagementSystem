@@ -29,9 +29,17 @@ public class ExhibitionService {
     }
 
     public int spaceOnExhibition(Exhibition exhibition, LocalDate date) {
-        int numberOfExhibitionsInLocation =
-                exhibitionRepository.countByLocationAndStartDateLessThanEqualAndEndDateGreaterThanEqual(exhibition.getLocation(), date, date);
+        int numberOfExhibitionsInLocation;
+
+        if (exhibition.getEndDate() == null) {
+            numberOfExhibitionsInLocation =
+                    exhibitionRepository.countByLocationAndStartDateLessThanEqual(exhibition.getLocation(), date);
+        } else numberOfExhibitionsInLocation =
+                exhibitionRepository.countByLocationAndStartDateLessThanEqualAndEndDateGreaterThanEqual(
+                                exhibition.getLocation(), date, date);
+
         if (numberOfExhibitionsInLocation == 0) return 0;
+
         return exhibition.getLocation().getMaxCapacity() / numberOfExhibitionsInLocation;
     }
 }

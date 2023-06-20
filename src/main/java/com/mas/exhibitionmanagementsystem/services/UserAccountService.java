@@ -40,10 +40,14 @@ public class UserAccountService {
     }
 
     private String encrypt(String inputPassword) {
-        return new BCryptPasswordEncoder().encode(inputPassword);
+        return passwordEncoder().encode(inputPassword);
     }
 
     private boolean decrypt(String inputPassword, String hashedPassword) {
-        return new BCryptPasswordEncoder().matches(inputPassword, hashedPassword);
+        return passwordEncoder().matches(inputPassword, hashedPassword);
+    }
+
+    private static BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }

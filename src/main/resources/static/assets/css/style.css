@@ -121,7 +121,8 @@ button,
 
 .error,
 .label-error,
-.label-error-signup {
+.label-error-signup,
+.label-error-reservation{
     color: red;
 }
 
@@ -312,5 +313,8 @@ button,
     margin-top: 48px;
 }
 
+.label-error-reservation {
+    margin-bottom: 8px;
+}
 
 

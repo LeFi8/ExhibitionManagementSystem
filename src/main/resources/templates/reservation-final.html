@@ -15,18 +15,21 @@
   <p>Date: <span th:text="${reservationDate}"></span></p>
 </div>
 
-<form>
+<form th:action="@{/reservation/final-step}" method="post">
   <div class="column-no-account">
     <h2>Almost there!</h2>
 
     <label for="no-account-name"></label>
-    <input type="text" id="no-account-name" class="name" placeholder="Name">
+    <input type="text" th:value="${name}" name="name" id="no-account-name" class="name" placeholder="Name">
+    <label class="label-error-reservation" th:text="${nameEmpty}"></label>
 
     <label for="no-account-surname"></label>
-    <input type="text" id="no-account-surname" placeholder="Surname">
+    <input type="text" th:value="${surname}" name="surname" id="no-account-surname" placeholder="Surname">
+    <label class="label-error-reservation" th:text="${surnameEmpty}"></label>
 
     <label for="no-account-email"></label>
-    <input type="text" id="no-account-email" class="signup-email" placeholder="E-mail">
+    <input type="text" th:value="${email}" name="email" id="no-account-email" class="signup-email" placeholder="E-mail">
+    <label class="label-error-reservation" th:text="${badEmail}"></label>
   </div>
 
   <button type="submit" id="make-reservation-button" class="make-reservation-button">MAKE A RESERVATION</button>

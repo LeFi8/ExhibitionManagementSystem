@@ -9,14 +9,14 @@
 <header th:replace="~{fragments/header}"></header>
 
 <div class="reservation-confirmation">
-  <h1>Thank you Alex!</h1>
+  <h1>Thank you <span th:text="${clientName}"></span></h1>
   <h2>Your reservation has been completed.</h2>
 
   <h3>Reservation details</h3>
-  <p>Exhibition: Underworld Journey</p>
-  <p>Reservations: 2</p>
-  <p>Date: 01/06/2023</p>
-  <p>Location: Koszykowa 86, Warszawa</p>
+  <p>Exhibition: <span th:text="${exhibitionName}"></span></p>
+  <p>Reservations: <span th:text="${reservationCount}"></span></p>
+  <p>Date: <span th:text="${reservationDate}"></span></p>
+  <p>Location: <span th:text="${exhibitionLocation}"></span></p>
 </div>
 
 </body>

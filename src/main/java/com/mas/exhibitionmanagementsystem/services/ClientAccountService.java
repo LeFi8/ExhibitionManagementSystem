@@ -29,7 +29,7 @@ public class ClientAccountService {
         return decrypt(password, userAccount.getPassword());
     }
 
-    public boolean validation(
+    public boolean validateSignupForm(
             String email,
             String password,
             String password2,
@@ -38,10 +38,7 @@ public class ClientAccountService {
             LocalDate birthdate,
             Model model
     ) {
-        if (!validateEmail(email)) {
-            model.addAttribute("badMail", "Email badly formatted");
-            return false;
-        }
+        if (isValidationFailed(name, surname, email, model)) return false;
 
         if (password.length() < 6) {
             model.addAttribute("email", email);
@@ -61,24 +58,6 @@ public class ClientAccountService {
             return false;
         }
 
-        if (name.isEmpty()) {
-            model.addAttribute("email", email);
-            model.addAttribute(
-                    "nameEmpty",
-                    "Name can't be empty!"
-            );
-            return false;
-        }
-
-        if (surname.isEmpty()) {
-            model.addAttribute("email", email);
-            model.addAttribute(
-                    "surnameEmpty",
-                    "Surname can't be empty!"
-            );
-            return false;
-        }
-
         if (birthdate != null && birthdate.isAfter(LocalDate.now())) {
             model.addAttribute("email", email);
             model.addAttribute("name", name);
@@ -90,6 +69,32 @@ public class ClientAccountService {
             return false;
         }
         return true;
+    }
+
+    public boolean isValidationFailed(String name, String surname, String email, Model model) {
+        if (name.isEmpty()) {
+            model.addAttribute("email", email);
+            model.addAttribute(
+                    "nameEmpty",
+                    "Name can't be empty!"
+            );
+            return true;
+        }
+
+        if (surname.isEmpty()) {
+            model.addAttribute("email", email);
+            model.addAttribute(
+                    "surnameEmpty",
+                    "Surname can't be empty!"
+            );
+            return true;
+        }
+
+        if (!validateEmail(email)) {
+            model.addAttribute("badMail", "Email badly formatted");
+            return true;
+        }
+        return false;
     }
 
     private boolean validateEmail(String email) {
@@ -111,7 +116,9 @@ public class ClientAccountService {
         return newClient;
     }
 
-    public void register(String email, String password, Client client) {
+    public boolean register(String email, String password, Client client) {
+        if (userAccountRepository.findByEmail(email) != null)
+            return false;
         UserAccount newUserAccount = new UserAccount();
         newUserAccount.setEmail(email);
         newUserAccount.setPassword(encrypt(password));
@@ -119,6 +126,11 @@ public class ClientAccountService {
 
         client.setAccount(newUserAccount);
         clientRepository.save(client);
+        return true;
+    }
+
+    public Client findByEmail(String email) {
+        return clientRepository.findByAccount_Email(email);
     }
 
     private String encrypt(String inputPassword) {

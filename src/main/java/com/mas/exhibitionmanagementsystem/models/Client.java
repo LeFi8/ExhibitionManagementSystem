@@ -20,6 +20,9 @@ public class Client extends Person {
     @JoinColumn(name = "id_pass")
     private Pass pass;
 
+    @OneToMany(mappedBy = "client")
+    private List<Ticket> tickets = new ArrayList<>();
+
     public UserAccount getAccount() {
         return account;
     }

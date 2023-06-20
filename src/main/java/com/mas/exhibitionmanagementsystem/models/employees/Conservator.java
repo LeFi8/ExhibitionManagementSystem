@@ -1,5 +1,6 @@
 package com.mas.exhibitionmanagementsystem.models.employees;
 
-public class Conservator extends Employee{
+import jakarta.persistence.Entity;
 
-}
+@Entity
+public class Conservator extends Employee{ }

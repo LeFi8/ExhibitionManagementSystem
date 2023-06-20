@@ -2,11 +2,13 @@ package com.mas.exhibitionmanagementsystem.models.employees;
 
 import com.mas.exhibitionmanagementsystem.models.Ticket;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Cashier extends Employee {
     @Column(name = "is_student", nullable = false)
     private boolean isStudent;

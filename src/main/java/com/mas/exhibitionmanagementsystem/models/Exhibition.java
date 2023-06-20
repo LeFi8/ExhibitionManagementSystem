@@ -1,6 +1,7 @@
 package com.mas.exhibitionmanagementsystem.models;
 
 import com.mas.exhibitionmanagementsystem.models.employees.Employee;
+import com.mas.exhibitionmanagementsystem.models.employees.ExhibitionManager;
 import com.mas.exhibitionmanagementsystem.utilities.converter.DateConverter;
 import jakarta.persistence.*;
 
@@ -51,7 +52,7 @@ public class Exhibition {
 
     @OneToOne
     @JoinColumn(name = "id_exhibition_manager")
-    private Employee exhibitionManager;
+    private ExhibitionManager exhibitionManager;
 
     @ManyToMany
     @JoinTable(
@@ -129,7 +130,7 @@ public class Exhibition {
         return exhibitionManager;
     }
 
-    public void setExhibitionManager(Employee exhibitionManager) {
+    public void setExhibitionManager(ExhibitionManager exhibitionManager) {
         this.exhibitionManager = exhibitionManager;
     }
 

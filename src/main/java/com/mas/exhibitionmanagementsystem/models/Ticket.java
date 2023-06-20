@@ -23,4 +23,8 @@ public class Ticket {
     @ManyToOne()
     @JoinColumn(name = "id_exhibition")
     private Exhibition exhibition;
+
+    @ManyToOne
+    @JoinColumn(name = "id_client")
+    private Client client;
 }

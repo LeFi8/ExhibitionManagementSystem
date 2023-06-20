@@ -19,7 +19,7 @@ public abstract class Person {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @Column(name = "birth_date", nullable = false)
+    @Column(name = "birth_date")
     @Convert(converter = DateConverter.class)
     private LocalDate birthDate;
 

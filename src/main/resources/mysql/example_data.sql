@@ -70,3 +70,14 @@ VALUES (1, 1),
        (6, 4),
        (6, 5);
 
+INSERT INTO client (birth_date, name, surname)
+VALUES
+    ('1995-03-20', 'Adam', 'Nowak'),
+    ('1997-06-10', 'Katarzyna', 'Kowalska'),
+    ('1999-09-05', 'Piotr', 'Wiśniewski'),
+    ('2001-12-15', 'Anna', 'Dąbrowska'),
+    ('2003-02-25', 'Mateusz', 'Lewandowski');
+
+INSERT INTO user_account(email, password)
+VALUES ('adamn@mail.com', '$2a$10$r9oXlhw8oUTFUXWfiAK.h.7Ce0puIow/rS6FzYZNsZzUkPLnv21MO');
+

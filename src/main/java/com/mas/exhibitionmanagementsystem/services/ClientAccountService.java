@@ -111,8 +111,11 @@ public class ClientAccountService {
         newClient.setName(name);
         newClient.setSurname(surname);
         newClient.setBirthDate(birthdate);
-        clientRepository.save(newClient);
-
+        try {
+            clientRepository.save(newClient);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
         return newClient;
     }
 
@@ -122,10 +125,23 @@ public class ClientAccountService {
         UserAccount newUserAccount = new UserAccount();
         newUserAccount.setEmail(email);
         newUserAccount.setPassword(encrypt(password));
-        userAccountRepository.save(newUserAccount);
+
+        try {
+            userAccountRepository.save(newUserAccount);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
 
         client.setAccount(newUserAccount);
-        clientRepository.save(client);
+
+        try {
+            clientRepository.save(client);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
         return true;
     }
 

@@ -1,7 +1,9 @@
 package com.mas.exhibitionmanagementsystem.services;
 
+import com.mas.exhibitionmanagementsystem.models.Client;
 import com.mas.exhibitionmanagementsystem.models.Exhibition;
 import com.mas.exhibitionmanagementsystem.models.Reservation;
+import com.mas.exhibitionmanagementsystem.models.enums.AudioGuide;
 import com.mas.exhibitionmanagementsystem.repositories.ReservationRepository;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,27 @@ public class ReservationService {
             reservationsCount += reservation.getNumberOfReservations();
         }
         return reservationsCount;
+    }
+
+    public boolean makeReservation(LocalDate date,
+                                   int reservationCount,
+                                   AudioGuide audioGuide,
+                                   Client client,
+                                   Exhibition exhibition) {
+        try {
+            Reservation reservation = new Reservation();
+            reservation.setReservationDate(date);
+            reservation.setNumberOfReservations(reservationCount);
+            reservation.setAudioGuide(audioGuide);
+            reservation.setClient(client);
+            reservation.setExhibition(exhibition);
+
+            reservationRepository.save(reservation);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 }

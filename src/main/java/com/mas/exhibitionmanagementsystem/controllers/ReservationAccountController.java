@@ -1,6 +1,8 @@
 package com.mas.exhibitionmanagementsystem.controllers;
 
 import com.mas.exhibitionmanagementsystem.models.Client;
+import com.mas.exhibitionmanagementsystem.models.Exhibition;
+import com.mas.exhibitionmanagementsystem.models.enums.AudioGuide;
 import com.mas.exhibitionmanagementsystem.services.ReservationService;
 import com.mas.exhibitionmanagementsystem.services.ClientAccountService;
 import jakarta.annotation.Nullable;
@@ -27,7 +29,8 @@ public class ReservationAccountController {
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-        model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
+        String exhibitionName = ((Exhibition)session.getAttribute("exhibition")).getName();
+        model.addAttribute("exhibitionName", exhibitionName);
         return "reservation-login";
     }
 
@@ -39,15 +42,15 @@ public class ReservationAccountController {
         HttpSession session = request.getSession();
 
         if (!clientAccountService.authenticate(email, password)) {
-            model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
+            String exhibitionName = ((Exhibition)session.getAttribute("exhibition")).getName();
+            model.addAttribute("exhibitionName", exhibitionName);
             model.addAttribute("email", email);
             model.addAttribute("badPass", "Email or password incorrect");
             return "reservation-login";
         }
 
         Client client = clientAccountService.findByEmail(email);
-        session.setAttribute("clientName", client.getName());
-        session.setAttribute("clientSurname", client.getSurname());
+        session.setAttribute("client", client);
         session.setAttribute("clientEmail", email);
 
         return "redirect:reservation/final-step";
@@ -78,8 +81,7 @@ public class ReservationAccountController {
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("clientName", client.getName());
-        session.setAttribute("clientSurname", client.getSurname());
+        session.setAttribute("client", client);
         session.setAttribute("clientEmail", email);
 
         return "redirect:reservation/final-step";
@@ -88,12 +90,18 @@ public class ReservationAccountController {
     @GetMapping("/reservation/final-step")
     public String reservationFinal(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-        model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
+        String exhibitionName = ((Exhibition)session.getAttribute("exhibition")).getName();
+        Client client = (Client) session.getAttribute("client");
+
+        model.addAttribute("exhibitionName", exhibitionName);
         model.addAttribute("reservationCount", session.getAttribute("reservationCount"));
         model.addAttribute("reservationDate", session.getAttribute("reservationDate"));
-        model.addAttribute("name", session.getAttribute("clientName"));
-        model.addAttribute("surname", session.getAttribute("clientSurname"));
-        model.addAttribute("email", session.getAttribute("clientEmail"));
+
+        if (client != null) {
+            model.addAttribute("name", client.getName());
+            model.addAttribute("surname", client.getSurname());
+            model.addAttribute("email", session.getAttribute("clientEmail"));
+        }
         return "reservation-final";
     }
 
@@ -101,10 +109,26 @@ public class ReservationAccountController {
     public String confirmReservation(@RequestParam("name") String name,
                                      @RequestParam("surname") String surname,
                                      @RequestParam("email") String email,
+                                     HttpServletRequest request,
                                      Model model) {
 
         if (clientAccountService.isValidationFailed(name, surname, email, model))
             return "reservation-final";
+
+        HttpSession session = request.getSession();
+        int reservationCount = (int) session.getAttribute("reservationCount");
+        LocalDate reservationDate = ((LocalDate) session.getAttribute("reservationDate"));
+        AudioGuide audioGuide = AudioGuide.valueOf((String) session.getAttribute("reservationAudioGuide"));
+        Client client = (Client) session.getAttribute("client");
+        Exhibition exhibition = (Exhibition) session.getAttribute("exhibition");
+
+        if (client == null) {
+            client = clientAccountService.addClient(name, surname, null);
+            session.setAttribute("client", client);
+        }
+        if (!reservationService.makeReservation(reservationDate, reservationCount, audioGuide, client, exhibition)) {
+            System.out.println("error");
+        }
 
         return "redirect:/reservation/confirmation";
     }
@@ -112,10 +136,12 @@ public class ReservationAccountController {
     @GetMapping("/reservation/confirmation")
     public String showReservationConfirmation(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();
-        model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
+        String exhibitionName = ((Exhibition) session.getAttribute("exhibition")).getName();
+        String clientName = ((Client) session.getAttribute("client")).getName();
+        model.addAttribute("exhibitionName", exhibitionName);
         model.addAttribute("reservationCount", session.getAttribute("reservationCount"));
         model.addAttribute("reservationDate", session.getAttribute("reservationDate"));
-        model.addAttribute("clientName", session.getAttribute("clientName"));
+        model.addAttribute("clientName", clientName);
 
         return "reservation-confirmation";
     }

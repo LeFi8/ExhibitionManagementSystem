@@ -16,7 +16,7 @@
 <form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="post">
     <div class="reservation-column">
         <label for="reservation-count">Number of reservations</label>
-        <input type="number" th:disabled="${reservationCountDisabled}" id="reservation-count" name="reservation-count" class="reservation-count" min="1" max="100" th:value="${reservationCount}">
+        <input type="number" th:disabled="${reservationCountDisabled}" id="reservation-count" name="reservation-count" class="reservation-count" min="1" max="20" th:value="${reservationCount}">
 
         <label for="reservation-date">Date</label>
         <input type="date" th:disabled="${reservationDateDisabled}" id="reservation-date" name="reservation-date" class="reservation-date" th:value="${reservationDate}">
@@ -30,11 +30,10 @@
     <div class="reservation-column">
         <label for="reservation-audio-guide">Audio guide</label>
         <select name="audio-guide" id="reservation-audio-guide" class="reservation-audio-guide">
-            <option>No</option>
-            <option>English</option>
-            <option>Polish</option>
-            <option>German</option>
-            <option>French</option>
+            <option th:each="audioGuide : ${T(com.mas.exhibitionmanagementsystem.models.enums.AudioGuide).values()}"
+                    th:value="${audioGuide.name()}"
+                    th:text="${audioGuide.name()}">
+            </option>
         </select>
     </div>
     <div th:if="${isAvailable}">

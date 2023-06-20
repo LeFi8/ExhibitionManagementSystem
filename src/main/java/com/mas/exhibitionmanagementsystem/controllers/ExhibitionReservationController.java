@@ -48,7 +48,7 @@ public class ExhibitionReservationController {
         }
 
         HttpSession session = request.getSession();
-        session.setAttribute("idExhibition", exhibition.getId());
+        session.setAttribute("exhibition", exhibition);
         session.setAttribute("exhibitionName", exhibition.getName());
         session.setAttribute("reservationCount", reservationNumber);
         session.setAttribute("reservationDate", reservationDate);
@@ -76,7 +76,8 @@ public class ExhibitionReservationController {
     @GetMapping("/reservation/account-options")
     public String showReservationAccountPage(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
-        model.addAttribute("exhibitionName", session.getAttribute("exhibitionName"));
+        String exhibitionName = ((Exhibition)session.getAttribute("exhibition")).getName();
+        model.addAttribute("exhibitionName", exhibitionName);
         return "reservation-account-options";
     }
 }

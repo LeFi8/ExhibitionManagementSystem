@@ -103,7 +103,7 @@ public class ExhibitionReservationController {
      * Shows account option page where you can either log in, sign up or
      * continue without any account
      *
-     * @param request contains session data
+     * @param request contains session data, used for getting the name of selected exhibition
      * @param model used for passing data to the view
      * @return path to the view
      */
@@ -118,7 +118,7 @@ public class ExhibitionReservationController {
     /**
      * Shows confirmation for the reservation a user has made
      *
-     * @param request contains session data
+     * @param request contains session data, used for getting the reservation information
      * @param model used for passing data to the view
      * @return path to the view
      */

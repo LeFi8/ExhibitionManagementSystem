@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.time.LocalDate;
 import java.util.Enumeration;
 
+/**
+ * Controller class for managing reservations and accounts
+ */
 @Controller
 public class ReservationAccountController {
     private final ReservationService reservationService;
@@ -28,6 +31,13 @@ public class ReservationAccountController {
         this.clientAccountService = clientAccountService;
     }
 
+    /**
+     * Method used for displaying login screen
+     *
+     * @param request contains session data, used for getting the name of selected exhibition
+     * @param model used for passing data to the view
+     * @return path to the view
+     */
     @GetMapping("/login")
     public String login(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -36,6 +46,15 @@ public class ReservationAccountController {
         return "reservation-login";
     }
 
+    /**
+     * Method used for login and user authentication
+     *
+     * @param email user email
+     * @param password user password
+     * @param request stores session data
+     * @param model used for passing data to the view
+     * @return path to the view or redirection to next reservation step
+     */
     @PostMapping("/login")
     public String authenticate(@RequestParam("email") String email,
                                @RequestParam("password") String password,
@@ -58,11 +77,28 @@ public class ReservationAccountController {
         return "redirect:reservation/final-step";
     }
 
+    /**
+     * Method for displaying sign up screen
+     * @return path to the view
+     */
     @GetMapping("/registration")
     public String registerForm() {
         return "reservation-sign-up";
     }
 
+    /**
+     * Add new client to database, create and assign account to him
+     *
+     * @param email user email
+     * @param password user password
+     * @param password2 second password, used for validation
+     * @param name user's name
+     * @param surname user's surname
+     * @param birthdate user's birthdate, can be null
+     * @param request contains session data
+     * @param model used for passing data to the view
+     * @return path to the view or redirection to next reservation step
+     */
     @PostMapping("/registration")
     public String registration(@RequestParam("email") String email,
                                @RequestParam("password") String password,
@@ -89,6 +125,14 @@ public class ReservationAccountController {
         return "redirect:reservation/final-step";
     }
 
+    /**
+     * Show reservation final step screen, where user can check if his data is correct, if the user
+     * is not logged in, he can input his data
+     *
+     * @param request contains session data
+     * @param model used for passing data to the view
+     * @return path to the view
+     */
     @GetMapping("/reservation/final-step")
     public String reservationFinal(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -107,6 +151,18 @@ public class ReservationAccountController {
         return "reservation-final";
     }
 
+    /**
+     * Confirms making reservation, if user is not logged in, the client is added to database
+     * without account, reservation data is also added to database here,
+     * all data from except for reservation info is removed from the session
+     *
+     * @param name user's name
+     * @param surname user's surname
+     * @param email user's email
+     * @param request contains session data
+     * @param model used for passing data to the view
+     * @return redirection to reservation confirmation screen
+     */
     @PostMapping("reservation/final-step")
     public String confirmReservation(@RequestParam("name") String name,
                                      @RequestParam("surname") String surname,

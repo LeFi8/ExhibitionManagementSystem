@@ -156,9 +156,9 @@ public class ReservationAccountController {
      * without account, reservation data is also added to database here,
      * all data from except for reservation info is removed from the session
      *
-     * @param name user's name
-     * @param surname user's surname
-     * @param email user's email
+     * @param name client's name
+     * @param surname client's surname
+     * @param email client's email
      * @param request contains session data
      * @param model used for passing data to the view
      * @return redirection to reservation confirmation screen

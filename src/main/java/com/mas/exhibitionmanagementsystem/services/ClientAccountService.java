@@ -12,6 +12,9 @@ import java.time.LocalDate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * Service class for managing clients and their accounts
+ */
 @Service
 public class ClientAccountService {
     private final ClientRepository clientRepository;
@@ -22,13 +25,87 @@ public class ClientAccountService {
         this.userAccountRepository = userAccountRepository;
     }
 
+    /**
+     * Authenticates user
+     *
+     * @param email user's email
+     * @param password user's password
+     * @return true is successful, false otherwise
+     */
     public boolean authenticate(String email, String password) {
         UserAccount userAccount = userAccountRepository.findByEmail(email);
         if (userAccount == null) return false;
 
-        return decrypt(password, userAccount.getPassword());
+        return checkMatchingPasswords(password, userAccount.getPassword());
     }
 
+    /**
+     * Adds new client to the database
+     *
+     * @param name client's name
+     * @param surname client's surname
+     * @param birthdate client's birthdate
+     * @return added client
+     */
+    public Client addClient(String name, String surname, LocalDate birthdate) {
+        Client newClient = new Client();
+        newClient.setName(name);
+        newClient.setSurname(surname);
+        newClient.setBirthDate(birthdate);
+        try {
+            clientRepository.save(newClient);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return newClient;
+    }
+
+    /**
+     * Registers new user
+     *
+     * @param email user's email
+     * @param password user's password
+     * @param client whose account is to be registered
+     * @return true if success, false otherwise
+     */
+    public boolean register(String email, String password, Client client) {
+        if (userAccountRepository.findByEmail(email) != null)
+            return false;
+        UserAccount newUserAccount = new UserAccount();
+        newUserAccount.setEmail(email);
+        newUserAccount.setPassword(encrypt(password));
+
+        try {
+            userAccountRepository.save(newUserAccount);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        client.setAccount(newUserAccount);
+
+        try {
+            clientRepository.save(client);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Validates the signup form for a new client account.
+     *
+     * @param email user's email
+     * @param password user's password
+     * @param password2 second password for validation
+     * @param name user's name
+     * @param surname user's surname
+     * @param birthdate user's birthdate
+     * @param model used for passing data to the view
+     * @return true if success, false otherwise
+     */
     public boolean validateSignupForm(
             String email,
             String password,
@@ -71,6 +148,15 @@ public class ClientAccountService {
         return true;
     }
 
+    /**
+     * Checks if validation fails
+     *
+     * @param name user's name
+     * @param surname user's surname
+     * @param email user's email
+     * @param model used for passing data to the view
+     * @return true if validation fails, false otherwise
+     */
     public boolean isValidationFailed(String name, String surname, String email, Model model) {
         if (name.isEmpty()) {
             model.addAttribute("email", email);
@@ -97,6 +183,12 @@ public class ClientAccountService {
         return false;
     }
 
+    /**
+     * Validates email
+     *
+     * @param email mail to validate
+     * @return true if valid, false otherwise
+     */
     private boolean validateEmail(String email) {
         String emailRegex = "^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$";
 
@@ -106,54 +198,31 @@ public class ClientAccountService {
         return matcher.matches();
     }
 
-    public Client addClient(String name, String surname, LocalDate birthdate) {
-        Client newClient = new Client();
-        newClient.setName(name);
-        newClient.setSurname(surname);
-        newClient.setBirthDate(birthdate);
-        try {
-            clientRepository.save(newClient);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-        return newClient;
-    }
-
-    public boolean register(String email, String password, Client client) {
-        if (userAccountRepository.findByEmail(email) != null)
-            return false;
-        UserAccount newUserAccount = new UserAccount();
-        newUserAccount.setEmail(email);
-        newUserAccount.setPassword(encrypt(password));
-
-        try {
-            userAccountRepository.save(newUserAccount);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        client.setAccount(newUserAccount);
-
-        try {
-            clientRepository.save(client);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-
-        return true;
-    }
-
+    /**
+     * Find client by his email
+     * @param email client's email
+     * @return client if email found, null otherwise
+     */
     public Client findByEmail(String email) {
         return clientRepository.findByAccount_Email(email);
     }
 
+    /**
+     * Encrypts the given raw password
+     * @param inputPassword password to encrypt
+     * @return encrypted password
+     */
     private String encrypt(String inputPassword) {
         return passwordEncoder().encode(inputPassword);
     }
 
-    private boolean decrypt(String inputPassword, String hashedPassword) {
+    /**
+     * Checks if both passwords are matching
+     * @param inputPassword inputed password
+     * @param hashedPassword hashed password from database
+     * @return true if matching, false otherwise
+     */
+    private boolean checkMatchingPasswords(String inputPassword, String hashedPassword) {
         return passwordEncoder().matches(inputPassword, hashedPassword);
     }
 

@@ -13,7 +13,7 @@
     <h2 class="exh-title" th:text="${exhibition.getName()}"></h2>
 </div>
 
-<form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="post">
+<form th:action="@{/exhibition/{id}/reservation/check-availability(id=${exhibition.getId()})}" method="get">
     <div class="reservation-column">
         <label for="reservation-count">Number of reservations</label>
         <input type="number" th:disabled="${reservationCountDisabled}" id="reservation-count" name="reservation-count" class="reservation-count" min="1" max="20" th:value="${reservationCount}">
@@ -26,7 +26,7 @@
     </div>
 </form>
 
-<form th:action="@{/exhibition/{id}/reservation/next(id=${exhibition.getId()})}" method="post">
+<form th:action="@{/exhibition/reservation/next(id=${exhibition.getId()})}" method="get">
     <div class="reservation-column">
         <label for="reservation-audio-guide">Audio guide</label>
         <select name="audio-guide" id="reservation-audio-guide" class="reservation-audio-guide">

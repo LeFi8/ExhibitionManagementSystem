@@ -8,6 +8,9 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Service class for managing exhibitions
+ */
 @Service
 public class ExhibitionService {
     private final ExhibitionRepository exhibitionRepository;
@@ -16,18 +19,31 @@ public class ExhibitionService {
         this.exhibitionRepository = exhibitionRepository;
     }
 
+    /**
+     * Retrieves all exhibitions
+     * @return list of all exhibitions
+     */
     public List<Exhibition> getAllExhibitions() {
         return exhibitionRepository.findAll();
     }
 
+    /**
+     * Retrieves an exhibition with given id
+     *
+     * @param id of the exhibition
+     * @return Optional containing the exhibition, empty Optional if none found
+     */
     public Optional<Exhibition> getExhibitionById(Long id) {
         return exhibitionRepository.findById(id);
     }
 
-    public Optional<List<Exhibition>> getExhibitionsAfterStartDate(LocalDate startDate) {
-        return exhibitionRepository.findAllByStartDateAfter(startDate);
-    }
-
+    /**
+     * Calculates the available space on specific exhibition for a given date
+     *
+     * @param exhibition to check for available space
+     * @param date to check for available space
+     * @return the available space on the exhibition
+     */
     public int spaceOnExhibition(Exhibition exhibition, LocalDate date) {
         int numberOfExhibitionsInLocation;
 

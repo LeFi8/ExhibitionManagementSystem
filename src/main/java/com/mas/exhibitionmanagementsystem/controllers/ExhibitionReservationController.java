@@ -43,7 +43,8 @@ public class ExhibitionReservationController {
 
     /**
      * Checks availability of an exhibition for specific number of reservations
-     * and on the specific day
+     * and on the specific day, then saves number of reservations and reservation date
+     * to the session and disables the user input for that fields if available
      *
      * @param request contains session data
      * @param id of chosen exhibition
@@ -52,7 +53,7 @@ public class ExhibitionReservationController {
      * @param model used for passing data to the view
      * @return path to the view reservation view or error view
      */
-    @PostMapping("/exhibition/{id}/reservation/check-availability")
+    @GetMapping("/exhibition/{id}/reservation/check-availability")
     public String checkAvailability(HttpServletRequest request,
                                     @PathVariable("id") Long id,
                                     @RequestParam("reservation-count") int reservationNumber,
@@ -70,6 +71,8 @@ public class ExhibitionReservationController {
 
         HttpSession session = request.getSession();
         session.setAttribute("exhibition", exhibition);
+        session.setAttribute("reservationCount", reservationNumber);
+        session.setAttribute("reservationDate", reservationDate);
 
         model.addAttribute("reservationCountDisabled", true);
         model.addAttribute("reservationDateDisabled", true);
@@ -82,29 +85,28 @@ public class ExhibitionReservationController {
     }
 
     /**
-     * Continues with the reservation process, saves number of requested reservations,
-     * date for requested reservations and audio guide info to the session
+     * Continues with the reservation process, saves audio guide info to the session
      *
      * @param request contains session data
-     * @param reservationNumber number of requested reservations
-     * @param reservationDate date to make reservation for
      * @param audioGuide users chosen audio guide
      * @return path to the view reservation view or error view
      */
-    @PostMapping("/exhibition/{id}/reservation/next")
-    //TODO: id not utilized
-    public String continueReservation(HttpServletRequest request,
-                                      @RequestParam("reservation-count") int reservationNumber,
-                                      @RequestParam("reservation-date") LocalDate reservationDate,
-                                      @RequestParam("audio-guide") String audioGuide) {
+    @GetMapping("/exhibition/reservation/next")
+    public String continueReservation(HttpServletRequest request, @RequestParam("audio-guide") String audioGuide) {
         HttpSession session = request.getSession();
-        session.setAttribute("reservationCount", reservationNumber);
-        session.setAttribute("reservationDate", reservationDate);
         session.setAttribute("reservationAudioGuide", audioGuide);
 
         return "redirect:/reservation/account-options";
     }
 
+    /**
+     * Shows account option page where you can either log in, sign up or
+     * continue without any account
+     *
+     * @param request contains session data
+     * @param model used for passing data to the view
+     * @return path to the view
+     */
     @GetMapping("/reservation/account-options")
     public String showReservationAccountPage(HttpServletRequest request, Model model) {
         HttpSession session = request.getSession();
@@ -113,6 +115,13 @@ public class ExhibitionReservationController {
         return "reservation-account-options";
     }
 
+    /**
+     * Shows confirmation for the reservation a user has made
+     *
+     * @param request contains session data
+     * @param model used for passing data to the view
+     * @return path to the view
+     */
     @GetMapping("/reservation/confirmation")
     public String showReservationConfirmation(HttpServletRequest request, Model model){
         HttpSession session = request.getSession();

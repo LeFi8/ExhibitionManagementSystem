@@ -13,7 +13,7 @@ they are not yet fully implemented or accessible through the GUI.
 - Spring Boot
 - Spring Data JPA
 - Hibernate
-- Thymeleaf
+- Thymeleaf - HTML, CSS
 - Spring Security
 - Docker
 - MySQL Database

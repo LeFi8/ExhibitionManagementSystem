@@ -15,6 +15,7 @@ they are not yet fully implemented or accessible through the GUI.
 - Hibernate
 - Thymeleaf - HTML, CSS
 - Spring Security
+- RESTful API
 - Docker
 - MySQL Database
 - JavaDoc
